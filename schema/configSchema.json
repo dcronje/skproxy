@@ -1,0 +1,52 @@
+{
+	"type": "object",
+	"$schema": "",
+	"id": "#ProxyConf",
+	"title": "Proxy Config",
+	"properties": {
+		"proxies": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"listen": {
+						"type": "object",
+						"properties": {
+							"host": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"host"
+						]
+					},
+					"target": {
+						"type": "object",
+						"properties": {
+							"host": {
+								"type": "string"
+							},
+							"port": {
+								"type": "string",
+								"default": "80"
+							}
+						},
+						"required": [
+							"host"
+						]
+					}
+				},
+				"required": [
+					"listen",
+					"target"
+				]
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		}
+	},
+	"required": [
+		"proxies"
+	],
+	"additionalProperties": false
+}

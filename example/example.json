@@ -1,0 +1,14 @@
+{
+	"proxies": [
+		{
+			"listen": {
+				"host": "",
+				"port": ""
+			},
+			"target": {
+				"host": "",
+				"port" : ""
+			}
+		}
+	]
+}
