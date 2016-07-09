@@ -32,6 +32,10 @@ var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
+var _chalk = require('chalk');
+
+var _chalk2 = _interopRequireDefault(_chalk);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -79,7 +83,7 @@ var SkProxy = function () {
 						});
 						res.write(responseObject);
 						res.end();
-						log.warning('Unable to proxy: ' + req.headers.host + ':' + _proxy.listeningPort);
+						console.log(_chalk2.default.yellow('[WARNING]') + ' Unable to proxy: ' + req.headers.host + ':' + _proxy.listeningPort);
 					}
 				});
 				_this.server.on('upgrade', function (req, socket, head) {
@@ -101,10 +105,10 @@ var SkProxy = function () {
 						});
 						res.write(responseObject);
 						res.end();
-						log.warning('Unable to proxy: ' + req.headers.host + ':' + _this.listeningPort + ' (socket)');
+						console.log(_chalk2.default.yellow('[WARNING]') + ' Unable to proxy: ' + req.headers.host + ':' + _this.listeningPort + ' (socket)');
 					}
 				});
-				log.message('Starting proxy server on port: ' + _this.listeningPort);
+				console.log(_chalk2.default.blue('[MESSAGE]') + ' Starting proxy server on port: ' + _this.listeningPort);
 				_this.server.listen(_this.listeningPort);
 				resolve();
 			});
@@ -165,7 +169,7 @@ var SkProxy = function () {
 					log.error(_error + ': ' + _proxyConf.listen.host + ':' + _proxy.listeningPort + req.url + ' >>> ' + _proxyConf.target.host + ':' + _proxyConf.target.port + req.url);
 				});
 				proxy.on('proxyRes', function (proxyRes, req, res) {
-					log.message('Proxied: ' + _proxyConf.listen.host + ':' + _proxy.listeningPort + req.url + ' >>> ' + _proxyConf.target.host + ':' + _proxyConf.target.port + req.url);
+					console.log(_chalk2.default.blue('[MESSAGE]') + ' Proxied: ' + _proxyConf.listen.host + ':' + _proxy.listeningPort + req.url + ' >>> ' + _proxyConf.target.host + ':' + _proxyConf.target.port + req.url);
 				});
 				var proxyItem = {
 					proxy: proxy,
@@ -173,7 +177,7 @@ var SkProxy = function () {
 					target: proxyConf.target
 				};
 				_this3.proxies.push(proxyItem);
-				log.message('Started proxy: ' + proxyConf.listen.host + ':' + _this3.listeningPort + ' >>> ' + proxyConf.target.host + ':' + proxyConf.target.port);
+				console.log(_chalk2.default.blue('[MESSAGE]') + ' Started proxy: ' + proxyConf.listen.host + ':' + _this3.listeningPort + ' >>> ' + proxyConf.target.host + ':' + proxyConf.target.port);
 				resolve();
 			});
 		}
@@ -184,7 +188,7 @@ var SkProxy = function () {
 
 process.on('SIGINT', function () {
 	console.log("\n");
-	log.warning('Stopping proxy server on port: ' + _proxy.listeningPort, function () {
+	console.log(_chalk2.default.yellow('[WARNING]') + ' Stopping proxy server on port: ' + _proxy.listeningPort, function () {
 		process.exit(0);
 	});
 });
