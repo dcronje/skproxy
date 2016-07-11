@@ -12,8 +12,17 @@
 					"listen": {
 						"type": "object",
 						"properties": {
+							"protocol": {
+								"type": "string",
+								"enum": ["http", "https", "upd"],
+								"default": "https"
+							},
 							"host": {
 								"type": "string"
+							},
+							"port": {
+								"type": ["string", "number"],
+								"default": "80"
 							}
 						},
 						"required": [
@@ -23,11 +32,16 @@
 					"target": {
 						"type": "object",
 						"properties": {
+							"protocol": {
+								"type": "string",
+								"enum": ["http", "https", "upd"],
+								"default": "http"
+							},
 							"host": {
 								"type": "string"
 							},
 							"port": {
-								"type": "string",
+								"type": ["string", "number"],
 								"default": "80"
 							}
 						},

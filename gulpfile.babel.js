@@ -28,7 +28,6 @@ gulp.task('start', () => {
 });
 
 gulp.task('watch', ['dev'], () => {
-  plugins.livereload.listen();
   gulp.watch('.src/**/*.js', ['dev']);
   gulp.watch('.src/*.js', ['dev']);
 });
