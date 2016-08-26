@@ -126,7 +126,7 @@ class SkProxy {
 				});
 				res.write(responseObject);
 				res.end();
-				log.error(_error+': '+proxyConf.listen.host+':'+proxyConf.listen.port+req.url+' >>> '+proxyConf.target.host+':'+proxyConf.target.port+req.url)
+				console.log(_error+': '+proxyConf.listen.host+':'+proxyConf.listen.port+req.url+' >>> '+proxyConf.target.host+':'+proxyConf.target.port+req.url)
 			});
 			proxy.on('proxyRes', (proxyRes, req, res) => {
 				console.log(chalk.blue('[MESSAGE]')+' Proxied: '+proxyConf.listen.host+':'+proxyConf.listen.port+req.url+' >>> '+proxyConf.target.host+':'+proxyConf.target.port+req.url)
