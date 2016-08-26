@@ -175,7 +175,7 @@ var SkProxy = function () {
 					});
 					res.write(responseObject);
 					res.end();
-					console.log(_error + ': ' + proxyConf.listen.host + ':' + proxyConf.listen.port + req.url + ' >>> ' + proxyConf.target.host + ':' + proxyConf.target.port + req.url);
+					console.log(error.message + ': ' + proxyConf.listen.host + ':' + proxyConf.listen.port + req.url + ' >>> ' + proxyConf.target.host + ':' + proxyConf.target.port + req.url);
 				});
 				proxy.on('proxyRes', function (proxyRes, req, res) {
 					console.log(_chalk2.default.blue('[MESSAGE]') + ' Proxied: ' + proxyConf.listen.host + ':' + proxyConf.listen.port + req.url + ' >>> ' + proxyConf.target.host + ':' + proxyConf.target.port + req.url);
