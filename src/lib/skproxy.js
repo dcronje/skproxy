@@ -43,7 +43,7 @@ class SkProxy {
 					});
 					res.write(responseObject);
 					res.end();
-					console.log(chalk.yellow('[WARNING]')+' Unable to proxy: '+req.headers.host+':'+this.listeningPort);
+					console.log(`${chalk.yellow('[WARNING]')} Unable to proxy: ${req.headers.host}:${this.listeningPort}`);
 				}
 			});
 			this.server.on('upgrade', (req, socket, head) => {
@@ -65,10 +65,10 @@ class SkProxy {
 					});
 					res.write(responseObject);
 					res.end();
-					console.log(chalk.yellow('[WARNING]')+' Unable to proxy: '+req.headers.host+':'+this.listeningPort+' (socket)');
+					console.log(`${chalk.yellow('[WARNING]')} Unable to proxy: ${req.headers.host}:${this.listeningPort} (socket)`);
 				}
 			});
-			console.log(chalk.blue('[MESSAGE]')+' Starting proxy server on port: '+this.listeningPort);
+			console.log(`${chalk.blue('[MESSAGE]')} Starting proxy server on port: ${this.listeningPort}`);
 			this.server.listen(this.listeningPort);
 			resolve();
 		});
@@ -126,10 +126,10 @@ class SkProxy {
 				});
 				res.write(responseObject);
 				res.end();
-				console.log(error.message+': '+proxyConf.listen.host+':'+proxyConf.listen.port+req.url+' >>> '+proxyConf.target.host+':'+proxyConf.target.port+req.url)
+				console.log(`${chalk.red('[ ERROR ]')}: ${proxyConf.listen.host}:${proxyConf.listen.port+req.url} >>> ${proxyConf.target.host}:${proxyConf.target.port+req.url}`)
 			});
 			proxy.on('proxyRes', (proxyRes, req, res) => {
-				console.log(chalk.blue('[MESSAGE]')+' Proxied: '+proxyConf.listen.host+':'+proxyConf.listen.port+req.url+' >>> '+proxyConf.target.host+':'+proxyConf.target.port+req.url)
+				console.log(`${chalk.blue('[MESSAGE]')} Proxied: ${proxyConf.listen.host}:${proxyConf.listen.port+req.url} >>> ${proxyConf.target.host}:${proxyConf.target.port+req.url}`)
 			});
 			var proxyItem = {
 				proxy: proxy,
@@ -137,7 +137,7 @@ class SkProxy {
 				target: proxyConf.target
 			};
 			this.proxies.push(proxyItem);
-			console.log(chalk.blue('[MESSAGE]')+' Started proxy: '+proxyConf.listen.host+':'+proxyConf.listen.port+' >>> '+proxyConf.target.host+':'+proxyConf.target.port);
+			console.log(`${chalk.blue('[MESSAGE]')} Started proxy: ${proxyConf.listen.host}:${proxyConf.listen.port} >>> ${proxyConf.target.host}:${proxyConf.target.port}`);
 			resolve();
 		});
 	}
@@ -145,7 +145,7 @@ class SkProxy {
 
 process.on('SIGINT', () => {
 	console.log("\n");
-	console.log(chalk.yellow('[WARNING]')+' Stopping proxy server on port: '+proxy.listeningPort, () => {
+	console.log(`${chalk.yellow('[WARNING]')} Stopping proxy server on port: ${proxy.listeningPort}`, () => {
 		process.exit(0);
 	});
 });
